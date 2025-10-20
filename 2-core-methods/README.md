@@ -1,6 +1,6 @@
 # Layer 2: Core Optimization Methods
 
-Welcome to the core of optimization theory! This layer covers fundamental optimization algorithms and theoretical results that form the basis of practical optimization.
+Welcome to the core of optimization theory! This layer covers fundamental optimization algorithms and theoretical results that form the basis of optimization.
 
 ## 🎯 Learning Objectives
 
