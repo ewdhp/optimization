@@ -420,7 +420,7 @@ def demonstrate_line_search():
     # Shade acceptable region
     acceptable_mask = np.array(f_values) <= np.array(armijo_line)
     ax2.fill_between(alphas, f_values, armijo_line, 
-                    where=acceptable_mask, alpha=0.3, color='green',
+                    where=acceptable_mask.tolist(), alpha=0.3, color='green',
                     label='Armijo satisfied')
     
     ax2.plot(alpha_backtrack, f_backtrack, 'go', markersize=12,
