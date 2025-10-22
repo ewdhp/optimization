@@ -22,6 +22,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Tuple, Optional, Union
 import warnings
+import math
 
 # Suppress warnings for cleaner output
 warnings.filterwarnings('ignore')
@@ -42,10 +43,11 @@ class ConvexSet:
         """Project point x onto the convex set."""
         raise NotImplementedError("Subclasses must implement project method")
     
-    def support(self, direction: np.ndarray) -> Tuple[np.ndarray, float]:
+    def support(self, direction: np.ndarray) -> Tuple[Optional[np.ndarray], float]:
         """
         Find the support point in the given direction.
         Returns (support_point, support_value).
+        Support point can be None for unbounded sets.
         """
         raise NotImplementedError("Subclasses must implement support method")
 
@@ -70,7 +72,7 @@ class ConvexSet:
         
         # Check if combination equals target
         combination = np.sum(weights.reshape(-1, 1) * points, axis=0)
-        return np.linalg.norm(combination - target) < tol
+        return bool(np.linalg.norm(combination - target) < tol)
 
     @staticmethod
     def convex_hull_2d(points: np.ndarray) -> np.ndarray:
@@ -282,10 +284,10 @@ class Ellipsoid(ConvexSet):
         # Volume of unit ball in n dimensions
         if n % 2 == 0:
             # Even dimension
-            unit_volume = np.pi**(n/2) / np.math.factorial(n//2)
+            unit_volume = np.pi**(n/2) / math.factorial(n//2)
         else:
             # Odd dimension
-            unit_volume = 2 * np.math.factorial((n-1)//2) * (4*np.pi)**((n-1)/2) / np.math.factorial(n)
+            unit_volume = 2 * math.factorial((n-1)//2) * (4*np.pi)**((n-1)/2) / math.factorial(n)
         
         return unit_volume * np.sqrt(det_A)
 

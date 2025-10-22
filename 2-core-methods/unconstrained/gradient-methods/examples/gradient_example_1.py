@@ -66,17 +66,17 @@ line, = ax.plot([], [], [], 'r-', linewidth=2)
 
 def init():
     point.set_data(np.array([]), np.array([]))
-    point.set_3d_properties(np.array([]))
+    point.set_3d_properties(np.array([]))  # type: ignore
     line.set_data(np.array([]), np.array([]))
-    line.set_3d_properties(np.array([]))
+    line.set_3d_properties(np.array([]))  # type: ignore
     return point, line
 
 def update(frame):
     data = traj[:frame+1]
     line.set_data(data[:,0], data[:,1])
-    line.set_3d_properties(data[:,2])
+    line.set_3d_properties(data[:,2])  # type: ignore
     point.set_data(data[frame,0], data[frame,1])
-    point.set_3d_properties(data[frame,2])
+    point.set_3d_properties(data[frame,2])  # type: ignore
     return point, line
 
 ani = FuncAnimation(fig, update, frames=len(traj), init_func=init, interval=300, blit=True)

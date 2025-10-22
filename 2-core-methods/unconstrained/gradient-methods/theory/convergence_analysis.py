@@ -24,9 +24,10 @@ Key Convergence Results:
    - Implies linear convergence even for non-convex functions
 """
 
+
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import Callable, Dict, List, Tuple, Optional
+from typing import Callable, Dict, List, Tuple, Optional, Any
 import warnings
 
 warnings.filterwarnings('ignore')
@@ -180,7 +181,7 @@ class ConvergenceAnalysis:
     def theoretical_convergence_rate(self,
                                     mu: float,
                                     L: float,
-                                    method: str = 'gradient_descent') -> Dict:
+                                    method: str = 'gradient_descent') -> Dict[str, Any]:
         """
         Compute theoretical convergence rates.
         
@@ -192,7 +193,7 @@ class ConvergenceAnalysis:
         Returns:
             Theoretical convergence information
         """
-        results = {'mu': mu, 'L': L}
+        results: Dict[str, Any] = {'mu': mu, 'L': L}
         
         if mu > 0:
             # Strongly convex case
@@ -535,7 +536,7 @@ def demonstrate_convergence_analysis():
     ax6.plot(alphas, f_linear, 'g--', linewidth=2, label='Linear approx')
     ax6.plot(alphas, f_quadratic, 'r--', linewidth=2, label='Quadratic upper bound')
     
-    ax6.fill_between(alphas, f_actual, f_quadratic, alpha=0.3, color='yellow',
+    ax6.fill_between(alphas, np.array(f_actual), np.array(f_quadratic), alpha=0.3, color='yellow',
                     label='Descent lemma gap')
     
     ax6.set_xlabel('Step Size α')
