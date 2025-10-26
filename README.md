@@ -21,7 +21,6 @@ optimization/
 ├── numerical-methods/          # Numerical and algorithmic optimization (I)
 ├── machine-learning/           # ML applications (J)
 ├── case-studies/              # Real-world applications
-└── utils/                     # Shared utilities and visualization tools
 ```
 
 ## 🧩 Knowledge Hierarchy
